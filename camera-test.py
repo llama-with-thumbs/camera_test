@@ -4,8 +4,11 @@ import os
 
 def capture_and_save_image(output_path):
     try:
+        # Specify the full path to the raspistill command
+        raspistill_cmd = "/usr/bin/raspistill"
+
         # Use the raspistill command to capture an image
-        subprocess.run(["raspistill", "-o", output_path])
+        subprocess.run([raspistill_cmd, "-o", output_path])
 
         # Open the captured image with Pillow
         image = Image.open(output_path)
