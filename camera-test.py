@@ -1,21 +1,23 @@
-import picamera
+from PIL import Image
 
-def capture_image(output_path):
+def save_image_with_pillow(input_path, output_path):
     try:
-        with picamera.PiCamera() as camera:
-            # Set the camera resolution (optional)
-            camera.resolution = (1920, 1080)  # Set your desired resolution
+        # Open the captured image with Pillow
+        image = Image.open(input_path)
 
-            # Capture an image and save it to the specified path
-            camera.capture(output_path)
+        # Save the image (you can also perform further processing here)
+        image.save(output_path)
 
-            print(f"Image captured and saved to {output_path}")
+        print(f"Image saved to {output_path}")
     except Exception as e:
         print(f"An error occurred: {str(e)}")
 
 if __name__ == "__main__":
-    # Specify the path where you want to save the captured image
-    image_output_path = "my_image.jpg"
+    # Specify the path of the captured image
+    captured_image_path = "image.jpg"
 
-    # Call the capture_image function to capture the image
-    capture_image(image_output_path)
+    # Specify the path where you want to save the processed image
+    processed_image_path = "processed_image.jpg"
+
+    # Call the save_image_with_pillow function to open and save the image
+    save_image_with_pillow(captured_image_path, processed_image_path)
